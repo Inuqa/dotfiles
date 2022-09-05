@@ -22,6 +22,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'tpope/vim-endwise'
+Plug 'ap/vim-css-color'
 
 " disabled
 " Plug 'takac/vim-hardtime'
@@ -125,6 +126,16 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 let g:coc_global_extensions = ['coc-tsserver', 'coc-solargraph']
 
+nnoremap <silent><nowait><space>k :call CocAction('doHover')<CR>
+nnoremap <silent><nowait><space>f :call CocAction('format')<CR>
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <C-x><C-z> coc#pum#visible() ? coc#pum#stop() : "\<C-x>\<C-z>"
+" remap for complete to use tab and <cr>
+inoremap <silent><expr> <c-space> coc#refresh()
+
+hi CocSearch ctermfg=12 guifg=#18A3FF
+hi CocMenuSel ctermbg=109 guibg=#13354A
+
 " Remap keys for applying codeAction to the current line.
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
@@ -150,7 +161,5 @@ nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
 nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
