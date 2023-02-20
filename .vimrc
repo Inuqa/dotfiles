@@ -23,6 +23,10 @@ Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'tpope/vim-endwise'
 Plug 'ap/vim-css-color'
+Plug 'elzr/vim-json'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'SirVer/ultisnips'
+Plug 'mlaursen/vim-react-snippets'
 
 " disabled
 " Plug 'takac/vim-hardtime'

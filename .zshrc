@@ -82,11 +82,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='vim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -108,12 +108,26 @@ eval "$(nodenv init -)"
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/.git --work-tree=$HOME'
 
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 export PATH=$PATH:$JAVA_HOME/bin
 
-export ANDROID_SDK_ROOT=$HOME/Library/Android/Sdk
+export ANDROID_SDK_ROOT=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
+export ADB_SERVER_SOCKET=tcp:$WSL_HOST:5037
+
+# pnpm
+export PNPM_HOME="/home/seba/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+alias pn=pnpm
+# pnpm end
+
+export PATH=$PATH:/home/seba/git/flutter/flutter/bin
+
+alias goparrotfy='ssh -i /home/seba/git/parrotfy/tmp/parrotfy-ec2.pem ubuntu@54.159.197.176'
